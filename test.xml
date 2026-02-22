@@ -1,0 +1,49 @@
+<mujoco model="slider_crank">
+
+    <option gravity="0 0 -9.81" timestep="0.002"/>
+
+    <worldbody>
+
+        <!-- Tay quay (link1) -->
+        <body name="link1" pos="0 0 0">
+            <joint name="joint1" type="hinge" axis="0 0 1"/>
+
+            <geom type="capsule"
+                  fromto="0 0 0 1 0 0"
+                  size="0.05"
+                  density="1000"/>
+
+            <!-- Thanh truyền (link2) -->
+            <body name="link2" pos="1 0 0">
+                <joint name="joint2" type="hinge" axis="0 0 1"/>
+
+                <geom type="capsule"
+                      fromto="0 0 0 1 0 0"
+                      size="0.05"
+                      density="1000"/>
+                
+                <!-- điểm nối ở đầu link2 -->
+                <site name="link2_end" pos="1 0 0" size="0.02"/>
+            </body>
+        </body>
+
+        <!-- Con trượt -->
+        <body name="slider" pos="100 0 0">
+            <joint name="joint3" type="slide" axis="1 0 0"/>
+
+            <geom type="box"
+                  size="0.15 0.15 0.15"
+                  density="2000"/>
+
+            <!-- điểm nối slider -->
+            <site name="slider_joint" pos="0 0 0" size="0.02"/>
+        </body>
+
+    </worldbody>
+
+    <!-- Ràng buộc để link2 gắn với slider -->
+    <equality>
+        <connect site1="link2_end" site2="slider_joint"/>
+    </equality>
+
+</mujoco>
