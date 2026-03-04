@@ -1,0 +1,33 @@
+<mujoco model="test">
+  <option gravity="0 0 -9.81" timestep="0.002" solver="Newton" iterations="100"/>
+  <worldbody>
+    <body name="link1" pos="0 0 0 ">
+      <joint type="hinge" axis="0 0 1" name="link1_joint"/>
+      <geom type="capsule" fromto="0 0 0 0 1 0" size="0.05"/>
+      <body name="link2" pos="0 1 0">
+        <joint type="hinge" axis="0 0 1" name="link2_joint"/>
+        <geom type="capsule" fromto="0 0 0 2 0 0" size="0.05"/>
+        <site name="link2_end" pos="2 0 0" size="0.02"/>
+        <site name="connet_link5" pos="1 0 0" size="0.02"/>
+      </body>
+    </body>
+    <body name="link3" pos="2 0 0">
+      <joint type="hinge" axis="0 0 1" name="link3_joint"/>
+      <geom type="capsule" fromto="0 0 0 0 1 0" size="0.05"/>
+      <site name="link3_end" pos="0 1 0" size="0.02"/>
+    </body>
+    <body name="link4" pos="3 0 0">
+      <joint type="hinge" axis="0 0 1" name="link4_joint"/>
+      <geom type="capsule" fromto="0 0 0 0 2 0" size="0.05"/>
+      <body name="link5" pos="0 2 0">
+        <joint type="hinge" axis="0 0 1" name="link5_joint"/>
+        <geom type="capsule" fromto="0 0 0 -2.5 0 0" size="0.05"/>
+        <site name="link5_end" pos="-2.5 0 0" size="0.02"/>
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <connect site1="link2_end" site2="link3_end"/>
+    <connect site1="link5_end" site2="connet_link5"/>
+  </equality>
+</mujoco>
