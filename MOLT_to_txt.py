@@ -1,7 +1,7 @@
 import pandas as pd
 
 input_file = "Excel/MOLT.xlsx"
-output_file = "molt.txt"
+output_file = "Result/TXT.txt"
 
 df = pd.read_excel(input_file, header=[1,2])
 df.columns = df.columns.get_level_values(0)
